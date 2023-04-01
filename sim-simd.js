@@ -1,7 +1,12 @@
 import simd from './simd-promises.js';
 
-function is42({ title, args, func }) {
+async function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function is42({ title, args, func }) {
 	const result = func(args);
+	await sleep(5000);
 	if (result === 42) {
 		return title;
 	} else {
